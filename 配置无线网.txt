@@ -1,0 +1,41 @@
+###  配置无线网
+
+第一步 按WIN+R调出“运行”栏，
+在 运行 菜单栏输入 cmd
+，出现命令提示符，输入命令
+ “netsh wlan set hostednetwork mode=allow ssid=kiss key=aassddff ”，
+
+ 启动虚拟WIFI网卡，
+ 其中ssid等于后的参数为网络名，
+ key为密钥。输入命令后，
+ enter键回车，
+ 会提示启动承载网络。
+ 如果不能启动，关闭命令提示符。进入开始，
+ 找到附件中的命令提示符以管理员身份运行，再输入netsh这条命令。
+
+ 第二步 打开网络共享中心，点击“更改适配器”，
+ 我们会看到一个名叫“无线网络连接2”的网络连接（如果没有的话，执行第一步，无线网络连接2，会自动创建），
+ 这就是win7自带的虚拟WIFI网卡，
+ 接着右键点击正在连接的网络，属性，
+ 看到“共享”选项卡，
+ 点击进入，勾选允许其他网络用户通过此计算机的Internet连接来连接，
+ 并选择“无线网络连接2”来连接。
+
+ 第三步 打开命令提示符，输入命令，
+ “netsh wlan start hostednetwork”，启动承载网络，
+ 打开手机的wlan，会搜到一个名叫“kiss”的网络，
+ 此时输入刚设好的密钥“aassddff”，
+ 就可以享受极速的手机免费WIFI上网啦！
+ 还不赶快试试！
+
+ 第四步 如果你想和别人分享你的WIFI，
+ 可以查看自己所创建的网络，
+ 输入命令，“netsh wlan show hostednetwork”,
+ 即可查看所创建网络的基本信息，
+ 如WIFI名称、最大连接数、已连接数，
+
+ 使用“ netsh wlan show hostednetwork setting=security“可以查看所创建网络的密码。
+
+
+
+ netsh wlan start hostednetwork
