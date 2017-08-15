@@ -15,3 +15,41 @@ git push -u origin master
 
 git remote add origin git@github.com:wangzkiss/test.git
 git push -u origin master
+
+
+
+删除提交日志
+
+
+Q:我们在提交代码时，把密码或者敏感信息也提交了，怎么办？
+A:“在本地删除密码或敏感信息后，再push到远程仓库”
+Q:"但这样删除后，在仓库的commit历史中，还是能看到密码呀?"
+A:“那就删除commit历史， 但是怎么删呢。。。。”
+B:"Using filter-branch"
+ 
+
+首先，
+
+　　进入到本地目录，执行 git filter-branch, 强制( --force) git对所有分支和tag的历史记录(--tag-name-filter cat -- -all)执行命令,
+    但是不需要check out(--index-filter)这些历史记录.
+　　执行的命令是  从历史记录中删除指定文件(`git rm --cached --ignore-unmatch 文件名称`)的内容和空提交(--prune-empty)
+    如果删除的是目录，需使用(`git rm -r --cached --ignore-unmatch 目录名称`) 
+　　执行命令, 删除文件在本地的提交历史:
+　　git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch 文件' --prune-empty --tag-name-filter cat -- --all
+然后，
+　　（可选）把文件名加入到.gitignore文件中， 以后提交时，会被过滤掉，防止以后不小心又把敏感数据提交到代码仓库中
+　　echo 文件名 >> .gitignore
+　　git add 文件名
+　　git commit -m "提交时忽略xxxx文件"
+
+最后，
+　　将修改提交到远程仓库，远程仓库的commit历史将被修改
+　　git push origin --force --all　　
+　　如果tag中也需要删除敏感数据，则执行
+　　git push origin  --force --tags
+　　告诉同事， rebase 之前拉取的仓库,  不要merge, 因为merge后提交，会把之前清除的敏感文件又提交到仓库里。
+    rebase 会先把本地提交的记录打补丁，然后把本地仓库更新成和远程相同，然后再应用补丁。
+    merge 是合并， 本地已有的敏感数据还在，远端仓库没了。
+
+　　
+
