@@ -5,6 +5,10 @@
 4.学习常用的linux 命令，使用SecureCRSecureFXPortable 工具完成  tomcat工程发包，启动，停止，
 5.记录以上所有学习的笔记，并且将自己的笔记发布自己的gitHub网上（现在gitHup上 注册账号），周五我去你们git网上看学习笔记
 
-学习问题：
-1.怎么下载githab上的一个test 仓库？
-2.修改test仓库中REDME.md 文件 添加“测试提交”，并提交到githab 库中
+谢国富
+
+1、熟悉jeeplus框架，实现了单表，树表，一对多表结合Gird选择框（自定义java对象）,以及富文本框的增删改查，熟悉jeeplus框架的基本流程。
+2、git工具的使用，熟悉了git的简单命令：init clone add commit push pull等，也完成了免密钥的配置、本地仓库和GitHub远程仓库的创建及远程推送；在eclipse上也操作了用git提交项目。
+3、熟悉了Linux常用命令，使用SecureCRSecureFXPortable 工具连接服务器练习过Linux常用命令，Tomcat工程的启动停止命令查看过，但是自己的服务器上没有Tomcat服务，没有实际操作过，打算周六日在服务器上搭建一下Java web运行环境
+4、目前正在看bootstrap框架和shiro框架教程
+
