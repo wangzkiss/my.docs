@@ -29,7 +29,6 @@ B:"Using filter-branch"
  
 
 首先，
-
 　　进入到本地目录，执行 git filter-branch, 强制( --force) git对所有分支和tag的历史记录(--tag-name-filter cat -- -all)执行命令,
     但是不需要check out(--index-filter)这些历史记录.
 　　执行的命令是  从历史记录中删除指定文件(`git rm --cached --ignore-unmatch 文件名称`)的内容和空提交(--prune-empty)
