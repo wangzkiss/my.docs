@@ -1,0 +1,6 @@
+tomcat 优化
+
+
+前端代码压缩 提高访问效率
+
+URIEncoding="UTF-8" compression="on"  compressionMinSize="2048" noCompressionUserAgents="gozilla,traviata" compressableMimeType="text/html,text/xml,text/javascript,application/javascript,text/css,text/plain"
