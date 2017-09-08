@@ -1,0 +1,29 @@
+一 Redis 安装使用
+wget http://download.redis.io/releases/redis-2.8.7.tar.gz
+tar xzf redis-2.8.7.tar.gz
+cd redis-2.8.7
+make
+注意：make指令是需要linux下安装gcc的 如果没有gcc可以尝试安装
+yum -y install gcc
+另外可能还会遇到其它的一些问题
+
+2.Redis的使用
+在Redis目录下 开启Redis 这个窗口就不能继续操作了
+scr/redis-server
+另开启一个命令行窗口 进入Redis目录 可以进行测试
+src/redis-cli
+quit可以退出当前client
+
+3.Redis的关闭
+src/redis-cli shutdown
+
+4.补充 Ctrl+z
+src/redis-server 开启服务后 这个窗口是不能运行命令的 这个窗口可以关闭 服务不会关闭
+如果在这个页面ctrl+z会把redis服务暂时挂起 可以通过 bg  fg唤醒
+《Linux系统中运行命令时CTRL+Z的作用》 http://www.linuxidc.com/Linux/2008-04/12405.htm
+Ubuntu 14.04下Redis安装及简单测试 http://www.linuxidc.com/Linux/2014-05/101544.htm
+Redis集群明细文档 http://www.linuxidc.com/Linux/2013-09/90118.htm
+Ubuntu 12.10下安装Redis（图文详解）+ Jedis连接Redis http://www.linuxidc.com/Linux/2013-06/85816.htm
+Redis系列-安装部署维护篇 http://www.linuxidc.com/Linux/2012-12/75627.htm
+CentOS 6.3安装Redis http://www.linuxidc.com/Linux/2012-12/75314.htm
+Redis配置文件redis.conf 详解 http://www.linuxidc.com/Linux/2013-11/92524.htm
