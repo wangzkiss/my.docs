@@ -58,3 +58,20 @@ git remote set-url origin [url]
 2.先删后加
 git remote rm origin
 git remote add origin [url]
+
+
+
+warning: push.default is unset; its implicit value is changing in Git 2.0 from 'matching' to 'simple'. 
+
+To squelch this message and maintain the current behavior after the default changes, use:  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:  git config --global push.default simple
+
+
+
+事实上这并不会影响你push的结果，最终push还会成功，因为这只是一个”warning“
+你可以按照他说的那样运行：git config --global push.default matching或者git config --global push.default simple命令，以后再push就不会有警告了。
+
+下面说一下push.default matching和push.default simple的区别：
+push.default设置maching的意思是：git push 会把你本地所有分支push到名称相对应的远程主机上。这意味着可能你会在不经意间push一些你原本没打算push的分支。
+push.default设置成simple的意思是：git push仅仅把当前所在分支push到从当初git pull pull下来的那个对应分支上，另外，这个过程也会同时检查各个分支的名称是否相对应。
