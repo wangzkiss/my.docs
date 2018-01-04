@@ -4,8 +4,22 @@
  b.get 是请求数据有长度限制1024  post没有长度限制
  c.get 服务端使用request.queryString 获取，post 服务端勇士request.form 获取
  d.get 地址请求，可以看到参数，改消息被编码过，不安全，post数据放在htmlheader内提交，比较安全
+
 2.String,StringBuffer,StringBuilder的区别是什么？为什么String 为什么不能改变？
  a.String 是字符串常量，内容创建后内容不可变，StringBuffer,StringBuilder是字符串变量，创建后内容可变
  b.String 在jdk定义成final类，所以不可改变
  c.Stringbuffer 是线程安全的，stringBuilder 是非线程安全的
-3.
+
+3.Vector,arraylist,linkedList 的区别是什么？
+ a.vector，arraylist 都以数组形式存储在内存中，linkedlist以链表的形式存储在内存中
+ b.list的元素有序，允许有重复元素，set 中的数据无序，不允许重复数据
+ c.vector 线程同步，Arraylist linkedlist 线程不同步
+ d.linkedlist适合指定位置插入，删除操作，不适合查找，arralist，verctor适合查询，不适合指定文职插入和删除操作
+ e.Arraylist 在元素填满容器是灰自动扩充容器大小的50%，而verctor测试100%，因此arraylist更节省空间
+    详见：http://www.cnblogs.com/mgod/archive/2007/08/05/844011.html
+4.Hashtable，hashMap和treeMap的区别？
+ a.hashmap 允许空键，空值，hashtable不允许空值，空键,
+ b.hashtable 使用enumeration，hashmap使用iterator，
+ c.hashtable线程同步，hashmap 非线程同步的
+ d.hashtable 中hash数组的默认大小是11 增加方式为 old*2+1 hashmap中hash数组的默认大小是16，增长方式为2指数倍
+ e.treeMap 能够把保存的记录根据键排序，默认升序排序
