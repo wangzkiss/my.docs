@@ -1,0 +1,11 @@
+常见问题
+1.get 和post 的区别
+ a.get 是从服务器获取数据，post是向服务器发送数据
+ b.get 是请求数据有长度限制1024  post没有长度限制
+ c.get 服务端使用request.queryString 获取，post 服务端勇士request.form 获取
+ d.get 地址请求，可以看到参数，改消息被编码过，不安全，post数据放在htmlheader内提交，比较安全
+2.String,StringBuffer,StringBuilder的区别是什么？为什么String 为什么不能改变？
+ a.String 是字符串常量，内容创建后内容不可变，StringBuffer,StringBuilder是字符串变量，创建后内容可变
+ b.String 在jdk定义成final类，所以不可改变
+ c.Stringbuffer 是线程安全的，stringBuilder 是非线程安全的
+3.
