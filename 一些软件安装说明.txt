@@ -27,3 +27,18 @@ Ubuntu 12.10下安装Redis（图文详解）+ Jedis连接Redis http://www.linuxi
 Redis系列-安装部署维护篇 http://www.linuxidc.com/Linux/2012-12/75627.htm
 CentOS 6.3安装Redis http://www.linuxidc.com/Linux/2012-12/75314.htm
 Redis配置文件redis.conf 详解 http://www.linuxidc.com/Linux/2013-11/92524.htm
+
+
+5.mysql 上传sql脚本文件过大时，gone away 错误时  
+修改参数：
+mysql> set global max_allowed_packet=1024*1024*16;
+Query OK, 0 rows affected (0.00 sec)
+mysql> show global variables like 'max_allowed_packet';
++--------------------+----------+
+| Variable_name      | Value    |
++--------------------+----------+
+| max_allowed_packet | 16777216 |
++--------------------+----------+
+1 row in set (0.00 sec)
+
+
