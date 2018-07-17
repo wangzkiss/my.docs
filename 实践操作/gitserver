@@ -1,0 +1,54 @@
+yum install httpd  git-daemon  gitweb
+2、服务器端初始化仓库
+
+
+mkdir -p /data/gitserver
+cd /data/gitserver
+git init --bare git_repo 初始化一个裸仓库
+3、向裸仓库提交初始文件
+cd /tmp
+git clone /data/gitserver/git_repo
+cd git_repo
+touch MD
+git add MD
+git commit -m "init readme txt"  MD
+git push origin master
+ 
+
+4、建立smart http协议，用户可以用http协议访问git仓库
+
+cd /etc/httpd/conf.d
+vim git.conf
+添加如下配置文件
+ScriptAlias /gitserver/ /usr/libexec/git-core/git-http-backend/         
+<Directory "/usr/libexec/git-core/">
+  SetEnv GIT_PROJECT_ROOT /data/gitserver
+  SetEnv GIT_HTTP_EXPORT_ALL
+  SetEnv REMOTE_USER=$REDIRECT_REMOTE_USER
+  Options +ExecCGI
+  Order allow,deny
+  Allow from all
+</Directory>
+ 
+
+5、配置gitweb信息，可以用web访问git仓库；
+vim  /etc/gitweb.conf
+输入git仓库的路径
+ Set the path to git projects.  This is an absolute filesystem path which will
+ be prepended to the project path.
+our $projectroot = "/var/lib/git";
+$projectroot = "/data/gitserver";
+6、重启 httpd
+
+chkconfig httpd on
+service httpd start
+7、查看git仓库
+http://192.168.2.163/git
+8、clone git 仓库
+1
+git clone http://ip_address/gitserver/git_repo
+9、如果push失败  ,到服务器作如下操作
+git push origin master
+如果git push 失败
+cd /data/git_server/git_repo
+ git config daemon.receivepack true
