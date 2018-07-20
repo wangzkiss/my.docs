@@ -1,0 +1,6 @@
+《深入理解计算机系统》
+
+
+ mysql 数据赋权操作
+REVOKE UPDATE ON `test`.`sys_office` FROM 'test'@'localhost';
+GRANT SELECT ON `test`.`sys_office` TO 'test'@'localhost';
