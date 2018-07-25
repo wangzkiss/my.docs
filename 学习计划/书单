@@ -1,6 +1,9 @@
-《深入理解计算机系统》
+1.《深入理解计算机系统》
+2.《计算机网络：自顶向下的方法》
+3.《现代操作系统》和《操作系统概念》
+5.《C/C++深层探索》
+6.《编码》
 
-
- mysql 数据赋权操作
+mysql 数据赋权操作
 REVOKE UPDATE ON `test`.`sys_office` FROM 'test'@'localhost';
 GRANT SELECT ON `test`.`sys_office` TO 'test'@'localhost';
