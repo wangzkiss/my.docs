@@ -3,7 +3,3 @@
 3.《现代操作系统》和《操作系统概念》
 5.《C/C++深层探索》
 6.《编码》
-
-mysql 数据赋权操作
-REVOKE UPDATE ON `test`.`sys_office` FROM 'test'@'localhost';
-GRANT SELECT ON `test`.`sys_office` TO 'test'@'localhost';
