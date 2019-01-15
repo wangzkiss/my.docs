@@ -1,0 +1,72 @@
+k8安装
+
+cd /var/kerberos/krb5kdc/
+ 
+kadmin.local -q "xst  -k hdfs-unmerged.keytab  hdfs/vigor-gdt-16@VIGOR.COM"
+kadmin.local -q "xst  -k hdfs-unmerged.keytab  hdfs/vigor-gdt-17@VIGOR.COM"
+kadmin.local -q "xst  -k hdfs-unmerged.keytab  hdfs/vigor-gdt-18@VIGOR.COM"
+kadmin.local -q "xst  -k HTTP.keytab  HTTP/vigor-gdt-16@VIGOR.COM"
+kadmin.local -q "xst  -k HTTP.keytab  HTTP/vigor-gdt-17@VIGOR.COM"
+kadmin.local -q "xst  -k HTTP.keytab  HTTP/vigor-gdt-18@VIGOR.COM"
+
+
+kinit -k -t hdfs.keytab hdfs/vigor-gdt-16@VIGOR.COM
+kinit -k -t hdfs.keytab HTTP/vigor-gdt-16@VIGOR.COM
+
+
+
+cd /var/kerberos/krb5kdc/
+ 
+scp hdfs.keytab vigor-gdt-16:/etc/hadoop/conf
+scp hdfs.keytab vigor-gdt-17:/etc/hadoop/conf
+scp hdfs.keytab vigor-gdt-18:/etc/hadoop/conf
+
+
+
+ssh vigor-gdt-16 "chown hdfs:hadoop /etc/hadoop/conf/hdfs.keytab ;chmod 400 /etc/hadoop/conf/hdfs.keytab"
+ssh vigor-gdt-17 "chown hdfs:hadoop /etc/hadoop/conf/hdfs.keytab ;chmod 400 /etc/hadoop/conf/hdfs.keytab"
+ssh vigor-gdt-18 "chown hdfs:hadoop /etc/hadoop/conf/hdfs.keytab ;chmod 400 /etc/hadoop/conf/hdfs.keytab"
+
+修改配置
+
+<property>
+  <name>dfs.datanode.keytab.file</name>
+  <value>/etc/hadoop/conf/hdfs.keytab</value>
+</property>
+<property>
+  <name>dfs.datanode.kerberos.principal</name>
+  <value>hdfs/_HOST@VIGOR.COM</value>
+</property>
+<property>
+  <name>dfs.datanode.kerberos.https.principal</name>
+  <value>HTTP/_HOST@VIGOR.COM</value>
+</property>
+<property>
+  <name>dfs.block.access.token.enable</name>
+  <value>true</value>
+</property>
+<property>  
+  <name>dfs.datanode.data.dir.perm</name>  
+  <value>700</value>  
+</property>
+<property>
+  <name>dfs.namenode.keytab.file</name>
+  <value>/etc/hadoop/conf/hdfs.keytab</value>
+</property>
+<property>
+  <name>dfs.namenode.kerberos.principal</name>
+  <value>hdfs/_HOST@VIGOR.COM</value>
+</property>
+<property>
+  <name>dfs.namenode.kerberos.https.principal</name>
+  <value>HTTP/_HOST@VIGOR.COM</value>
+</property>
+
+启动namenode
+在每个节点上获取 root 用户的 ticket，这里 root 为之前创建的 root/admin 的密码。
+ssh vigor-gdt-16 "echo 123456|kinit root/admin"
+ssh vigor-gdt-17 "echo 123456|kinit root/admin"
+ssh vigor-gdt-18 "echo 123456|kinit root/admin"
+
+获取vigor-gdt-17的 ticket：
+kinit -k -t /etc/hadoop/conf/hdfs.keytab hdfs/vigor-gdt-17@VIGOR.COM

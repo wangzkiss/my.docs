@@ -1,0 +1,10 @@
+ 检查hadoop集群 hdfs中有那些组，假如有hadoop，hdfs，supergroup 等组
+
+1.首先在linux系统中建立相对应的用户test和supergroup组（hadoop或者hdfs组） 
+2 将test用户添加到supergroup组中（或者hadoop，hdfs组）
+3 用hive用户（管理员）beeline连接hive ，创建角色：test_role，执行命令：create role test_role;
+4 为test_role赋予求权限，执行命令：grant all on testdb.testtable to role test_role;(hive中必须存在库testdb，表testtable)
+5 将test_role 角色赋予test用户  执行命令 grant test_role to group test;  
+6.验证 用test用户 beeline连接hive ：执行 use testdb; show tables; 检查是否错误
+
+  

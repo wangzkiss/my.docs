@@ -1,0 +1,60 @@
+public static void main(String[] args) {
+        ClassLoader classLoader = new ClassLoader() {
+            /*@Override
+            public Class<?> loadClass(String name) throws ClassNotFoundException {
+                try {
+                    String classFile=name.substring(name.lastIndexOf(".")+1)+".class";
+                    InputStream in=getClass().getResourceAsStream(classFile);
+                    if(in==null){
+                        return super.loadClass(name);
+                    }else{
+                        byte [] b=new byte[in.available()];
+                        in.read(b);
+                        return defineClass(name, b, 0,b.length);
+                    }
+                } catch (IOException e) {
+                     throw new ClassNotFoundException();
+                }
+            }*/
+            @Override
+            protected Class<?> findClass(String name) throws ClassNotFoundException {
+            
+                try {
+                    String classFile=name.substring(name.lastIndexOf(".")+1)+".class";
+                    InputStream in=getClass().getResourceAsStream(classFile);
+                    if(in==null){
+                        return super.findClass(name);
+                    }else{
+                        byte [] b=new byte[in.available()];
+                        in.read(b);
+                        return defineClass(name, b, 0,b.length);
+                    }
+                } catch (IOException e) {
+                     throw new ClassNotFoundException();
+                }
+            }
+        };
+        try {
+            Object o=classLoader.loadClass("learn.TestDead").newInstance();
+            System.out.println(o.getClass());
+            System.out.println(o instanceof learn.TestDead);
+        } catch (InstantiationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+
+1.重写loadClass方法，会破坏双亲委派模型规则加载方式，  出现两个加载器实例的对象  返回值：
+class learn.TestDead
+false
+2.重写findClass方法   继续保持双亲委派模型规则  返回：
+class learn.TestDead
+true
+

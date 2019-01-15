@@ -4,26 +4,26 @@ java -cp  fdfs-client-java.jar org.csource.fastdfs.test.TestClient fdfs_client.c
 笔者为：192.168.2.163   主机名 kb163
 
 2.编译环境准备
-[root@kb163 src]# yum install git gcc gcc-c++ make automake autoconf libtool pcre pcre-devel zlib zlib-devel openssl-devel -y
+yum install git gcc gcc-c++ make automake autoconf libtool pcre pcre-devel zlib zlib-devel openssl-devel -y
 
 3.目录准备
     所有安装包位置   /usr/local/src
     tracker跟踪服务器数据  /fastdfs/tracker
     storage存储服务器数据  /fastdfs/storage
-[root@kb163 src]# mkdir -p /fastdfs/tracker  
-[root@kb163 src]# mkdir -p /fastdfs/storage  
+mkdir -p /fastdfs/tracker  
+mkdir -p /fastdfs/storage  
 
 4.安装libfatscommon
-[root@kb163 src]# cd /usr/local/src
-[root@kb163 src]# git clone https://github.com/happyfish100/libfastcommon.git --depth 1
-[root@kb163 src]# cd libfastcommon/
-[root@kb163 src]# ./make.sh && ./make.sh install
+cd /usr/local/src
+git clone https://github.com/happyfish100/libfastcommon.git --depth 1
+cd libfastcommon/
+./make.sh && ./make.sh install
 
 5.安装FastDFS
-[root@kb163 src]# cd /usr/local/src
-[root@kb163 src]# git clone https://github.com/happyfish100/fastdfs.git --depth 1
-[root@kb163 src]# cd fastdfs/
-[root@kb163 src]# ./make.sh && ./make.sh install
+cd /usr/local/src
+git clone https://github.com/happyfish100/fastdfs.git --depth 1
+cd fastdfs/
+./make.sh && ./make.sh install
 #配置文件准备
 cp /etc/fdfs/tracker.conf.sample /etc/fdfs/tracker.conf
 cp /etc/fdfs/storage.conf.sample /etc/fdfs/storage.conf
@@ -36,12 +36,12 @@ cp /usr/local/src/fastdfs/conf/http.conf /etc/fdfs/
 cp /usr/local/src/fastdfs/conf/mime.types /etc/fdfs/ 
 
 6.安装fastdfs-nginx-module
-[root@kb163 src]# cd /usr/local/src
+cd /usr/local/src
 git clone https://github.com/happyfish100/fastdfs-nginx-module.git --depth 1
 cp /usr/local/src/fastdfs-nginx-module/src/mod_fastdfs.conf /etc/fdfs
 
 7.安装nginx
-[root@kb163 src]# cd /usr/local/src
+cd /usr/local/src
 wget http://nginx.org/download/nginx-1.12.2.tar.gz
 tar -zxvf nginx-1.12.2.tar.gz
 cd nginx-1.12.2/
